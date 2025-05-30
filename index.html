@@ -1,116 +1,180 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Denis Tuzlak | Unity Developer</title>
+  <title>Unity Game Developer | Denis Tuzlak</title>
   <style>
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
+      height: 100%;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #0f1115;
-      color: #f1f1f1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
+      color: #d0fff7;
+      background-color: #000;
+      overflow-x: hidden;
     }
-
-    header {
+    #particles-js {
+      position: absolute;
       width: 100%;
-      padding: 60px 20px 20px;
+      height: 100%;
+      z-index: -1;
+    }
+    nav {
+      width: 100%;
       text-align: center;
-      background: linear-gradient(135deg, #1e1f26, #2c2f39);
-      box-shadow: 0 0 30px rgba(0,0,0,0.4);
+      background: rgba(0, 0, 0, 0.85);
+      padding: 1rem 0;
     }
-
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-      color: #00ffaa;
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
     }
-
-    p.subtitle {
-      font-size: 1.3rem;
-      color: #aaa;
-    }
-
-    section {
-      max-width: 800px;
-      padding: 40px 20px;
-      line-height: 1.7;
-      text-align: center;
-    }
-
-    .highlight {
+    nav a {
+      text-decoration: none;
       color: #00ffaa;
       font-weight: bold;
+      font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+      transition: 0.3s;
     }
-
-    .skills {
-      margin-top: 30px;
+    nav a:hover {
+      background: #00ffaa;
+      color: #000;
+      border-radius: 5px;
+    }
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      background: #111;
+      border-radius: 5px;
+      padding: 0.5rem;
+    }
+    nav li {
+      position: relative;
+    }
+    nav li:hover .dropdown,
+    .dropdown:hover {
+      display: block;
+    }
+    .dropdown a {
+      display: block;
+      margin: 0.3rem 0;
+    }
+    .container {
+      margin-top: 15vh;
+      text-align: center;
+      z-index: 1;
+      position: relative;
+    }
+    .skill-card {
+      background: rgba(0, 255, 170, 0.05);
+      border: 1px solid #00ffaa;
+      border-radius: 10px;
+      padding: 1rem;
+      margin: 1rem;
+      display: inline-block;
+      width: 300px;
+      transition: transform 0.3s ease;
+    }
+    .skill-card:hover {
+      transform: scale(1.05);
+      background: rgba(0, 255, 170, 0.2);
+    }
+    .skills-wrapper {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 12px;
+      margin: 2rem auto;
+      max-width: 1200px;
     }
-
-    .skill-badge {
-      background: #1d1f27;
-      border: 1px solid #333;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.95rem;
-      color: #ccc;
-    }
-
     footer {
-      margin-top: auto;
-      padding: 20px;
       text-align: center;
-      color: #555;
-      font-size: 0.85rem;
+      margin-top: 4rem;
+      padding: 2rem;
+      background: #111;
+    }
+    .review-stars {
+      color: gold;
+      font-size: 1.5rem;
+    }
+    .badge {
+      background: #00ffaa;
+      color: #000;
+      padding: 0.3rem 0.7rem;
+      border-radius: 5px;
+      margin: 0.5rem;
+      display: inline-block;
+    }
+    .clients {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .clients img {
+      height: 40px;
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
+  <div id="particles-js"></div>
 
-  <header>
-    <h1>Denis Tuzlak</h1>
-    <p class="subtitle">Senior Unity Game Developer</p>
-  </header>
+  <nav>
+    <ul>
+      <li>
+        <a href="#">Projects</a>
+        <div class="dropdown">
+          <a href="#">VR</a>
+          <a href="#">Mobile</a>
+          <a href="#">WebGL</a>
+          <a href="#">PC</a>
+        </div>
+      </li>
+      <li><a href="#">Unity Tooltips</a></li>
+    </ul>
+  </nav>
 
-  <section>
-    <p>
-      With over <span class="highlight">10 years of experience</span> in Unity game development,
-      I bring interactive worlds to life across <span class="highlight">mobile</span>,
-      <span class="highlight">PC</span>, <span class="highlight">VR</span>, and the <span class="highlight">web</span>.
-    </p>
-    <p>
-      From building <span class="highlight">blockchain-integrated games</span> and 
-      <span class="highlight">VR multiplayer experiences</span> to 
-      developing <span class="highlight">WebGL</span> and even <span class="highlight">gambling platforms</span>,
-      my work spans across genres, platforms, and technologies.
-    </p>
+  <div class="container">
+    <h1 style="color: #00ffaa;">Unity Game Developer</h1>
+    <p>Full-cycle development from idea to store release with over 10 years of expertise.</p>
 
-    <div class="skills">
-      <div class="skill-badge">Unity</div>
-      <div class="skill-badge">C#</div>
-      <div class="skill-badge">VR / AR</div>
-      <div class="skill-badge">Mobile (iOS / Android)</div>
-      <div class="skill-badge">WebGL</div>
-      <div class="skill-badge">Blockchain (ERC1155 / NFTs)</div>
-      <div class="skill-badge">Firebase</div>
-      <div class="skill-badge">TNet / Mirror</div>
-      <div class="skill-badge">Multiplayer</div>
-      <div class="skill-badge">Performance Optimization</div>
+    <div class="skills-wrapper">
+      <div class="skill-card">Multiplayer Solutions (TNet, Mirror, PUN, UNet)</div>
+      <div class="skill-card">Own Game Server Deployment</div>
+      <div class="skill-card">Blockchain & Smart Contracts</div>
+      <div class="skill-card">Database Integrations</div>
+      <div class="skill-card">RESTful APIs & Payment Systems</div>
+      <div class="skill-card">Ads Integrations (Unity Ads, AdMob)</div>
+      <div class="skill-card">Mobile, PC, WebGL, and VR Game Development</div>
+      <div class="skill-card">Bug Fixing & Build Support</div>
+      <div class="skill-card">UI/UX Design & 3D Modeling</div>
     </div>
-  </section>
+
+    <div class="clients">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Upwork_Logo.svg" alt="Upwork" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Unity_Technologies_logo.svg" alt="Unity" />
+    </div>
+
+    <div class="badge">Top Rated Plus</div>
+    <div class="badge">$100K+ Earned</div>
+    <div class="review-stars">★★★★★</div>
+  </div>
 
   <footer>
-    &copy; 2025 Denis Tuzlak – Let's build your next game.
+    <p>© 2025 Denis Tuzlak</p>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script>
+    particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
+  </script>
 </body>
 </html>
