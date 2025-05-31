@@ -248,14 +248,169 @@
   </div>
 </div>
 
-<div class="gallery">
-  <h2 style="text-align:center;">Project highlights</h2>
-  <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
-    <img src="https://via.placeholder.com/150" />
-    <img src="https://via.placeholder.com/150" />
-    <img src="https://via.placeholder.com/150" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gallery Highlights</title>
+  <style>
+    body {
+      margin: 0;
+      background: #0f1115;
+      color: #fff;
+      font-family: sans-serif;
+      overflow-x: hidden;
+    }
+
+    .gallery-wrapper {
+      overflow: hidden;
+      width: 100%;
+      position: relative;
+      height: 500px;
+      margin: 0 auto;
+    }
+
+    .gallery-container {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      will-change: transform;
+    }
+
+    .gallery-item {
+      flex: 0 0 33.333%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: scale(0.7);
+      transition: transform 0.3s ease-in-out;
+      padding: 20px;
+    }
+
+    .gallery-item img {
+      max-height: 400px;
+      max-width: 100%;
+      transition: transform 0.3s ease;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .gallery-item.active {
+      transform: scale(1);
+      z-index: 2;
+    }
+
+    .gallery-item img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Modal popup */
+    .popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      display: none;
+    }
+
+    .popup img {
+      max-height: 90vh;
+      max-width: 90vw;
+      border-radius: 10px;
+    }
+
+    .popup .close {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+    }
+
+    h2 {
+      text-align: center;
+      color: #00ffaa;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Project Highlights</h2>
+
+<div class="gallery-wrapper">
+  <div class="gallery-container" id="gallery">
+    <div class="gallery-item"><img src="Resources/Galery highlights/NomiBook.png"></div>
+    <div class="gallery-item"><img src="Resources/Galery highlights/bitlife.png"></div>
+    <div class="gallery-item"><img src="Resources/Galery highlights/coloringbook.png"></div>
+    <div class="gallery-item"><img src="Resources/Galery highlights/dinosaur_world.png"></div>
+    <div class="gallery-item"><img src="Resources/Galery highlights/ebay_vault.jpg"></div>
+    <div class="gallery-item"><img src="Resources/Galery highlights/nomipiano.png"></div>
+    <div class="gallery-item"><img src="Resources/Galery highlights/shape.png"></div>
+    <div class="gallery-item"><img src="Resources/Galery highlights/tic tac toe.png"></div>
   </div>
 </div>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+  <span class="close" onclick="closePopup()">&times;</span>
+  <img id="popupImg" src="">
+</div>
+
+<script>
+  const gallery = document.getElementById("gallery");
+  const items = gallery.children;
+  const popup = document.getElementById("popup");
+  const popupImg = document.getElementById("popupImg");
+
+  let index = 0;
+  let interval;
+
+  function updateGallery() {
+    for (let i = 0; i < items.length; i++) {
+      items[i].classList.remove("active");
+    }
+    const itemWidth = items[0].offsetWidth;
+    gallery.style.transform = `translateX(-${itemWidth * index}px)`;
+    items[index % items.length].classList.add("active");
+  }
+
+  function loopGallery() {
+    interval = setInterval(() => {
+      index = (index + 1) % items.length;
+      updateGallery();
+    }, 3000);
+  }
+
+  function openPopup(src) {
+    clearInterval(interval);
+    popupImg.src = src;
+    popup.style.display = "flex";
+  }
+
+  function closePopup() {
+    popup.style.display = "none";
+    loopGallery();
+  }
+
+  // Start auto-scroll
+  loopGallery();
+  updateGallery();
+
+  // Click on image to open popup
+  for (let item of items) {
+    item.querySelector('img').addEventListener('click', (e) => {
+      openPopup(e.target.src);
+    });
+  }
+</script>
+
+</body>
+</html>
 
 <div class="reviews">
   <h2>Client Reviews</h2>
