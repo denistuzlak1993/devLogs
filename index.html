@@ -191,7 +191,7 @@
     <li>
       <a href="#">Projects</a>
       <div class="dropdown">
-        <a href="#">VR</a>
+        <a href="vrprojects.html">VR Projects</a>
         <a href="#">Mobile</a>
         <a href="#">WebGL</a>
         <a href="#">PC</a>
@@ -248,8 +248,8 @@
   </div>
 </div>
 
-<!DOCTYPE html>
-<html lang="en">
+
+
 <head>
   <meta charset="UTF-8">
   <title>Gallery Highlights</title>
@@ -352,6 +352,10 @@
     <div class="gallery-item"><img src="Resources/Galery highlights/nomipiano.png"></div>
     <div class="gallery-item"><img src="Resources/Galery highlights/shape.png"></div>
     <div class="gallery-item"><img src="Resources/Galery highlights/tic tac toe.png"></div>
+    <div class="gallery-item"><img src="Resources/Galery highlights/truck.png"></div>
+    <div class="gallery-item"><img src="Resources/Galery highlights/hitthestar.png"></div>
+      <div class="gallery-item"><img src="Resources/Galery highlights/vehicle.png"></div>
+
   </div>
 </div>
 
@@ -386,52 +390,133 @@
     }, 3000);
   }
 
-  function openPopup(src) {
-    clearInterval(interval);
-    popupImg.src = src;
-    popup.style.display = "flex";
-  }
+ function openPopup(src) {
+  clearInterval(interval);
+  popupImg.src = src;
+  popup.style.display = "flex";
+}
 
-  function closePopup() {
-    popup.style.display = "none";
-    loopGallery();
-  }
-
-  // Start auto-scroll
+function closePopup() {
+  popup.style.display = "none";
   loopGallery();
-  updateGallery();
+}
 
-  // Click on image to open popup
-  for (let item of items) {
-    item.querySelector('img').addEventListener('click', (e) => {
-      openPopup(e.target.src);
-    });
-  }
+// Attach click to images
+Array.from(items).forEach((item) => {
+  const img = item.querySelector("img");
+  img.addEventListener("click", () => openPopup(img.src));
+});
+
+window.addEventListener("load", () => {
+  items[0].classList.add("active");
+  loopGallery();
+});
+  
 </script>
 
 </body>
-</html>
-
-<div class="reviews">
-  <h2>Client Reviews</h2>
-  <div class="review-box">
-    <div class="stars">★★★★★</div>
-    <p>100K+ earnings on Upwork, Top Rated Plus</p>
-    <div class="badges">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Upwork_logo.svg" alt="Upwork">
-      <img src="https://img.icons8.com/color/96/000000/steam.png" alt="Steam">
-      <img src="https://img.icons8.com/color/96/000000/android-os.png" alt="Android">
-      <img src="https://img.icons8.com/ios-filled/100/apple-logo.png" alt="Apple">
+<div id="review-container" style="width: 90%; max-width: 800px; margin: 80px auto; text-align: center; font-family: sans-serif; color: white;">
+  <div id="review-box" style="padding: 30px; border-radius: 15px; box-shadow: 0 0 20px #0ff, 0 0 40px #0ff inset; background: #111; transition: opacity 1s ease;">
+    <h2 id="review-title" style="color: #0ff; margin-bottom: 10px;">Loading...</h2>
+    <div id="stars" style="color: gold; font-size: 22px; margin-bottom: 15px;">★★★★★</div>
+    <p id="review-text" style="font-size: 17px; line-height: 1.6;">Please wait...</p>
+    <div style="margin-top: 25px;">
+      <img src="https://upwex.io/wp-content/uploads/2024/05/upwex-upwork-top-rated-plus_2_.png" style="width: 120px; margin-bottom: 10px;" />
+      <div style="font-size: 18px; color: #0ff;">100K+ $ earned</div>
     </div>
   </div>
 </div>
 
+<script>
+const reviews = [
+  {
+    title: "Unity Firebase authentication + storage and realtime database prototype",
+    stars: 5,
+    text: `I have purchased a gig package from Denis for an authentication system for our Unity project, and I must say, it was a fantastic experience. Denis created an impressive system that integrates Google, Facebook, and email sign-in, along with smooth data storage in Realtime Database. The quality of his work was beyond my expectations, and he delivered everything right on schedule.
+
+What really stood out was the detailed and easy-to-follow instructions he included, which made adding the system to our project a breeze. Throughout the project, Denis showed great professionalism and expertise, which was very reassuring.
+
+I highly recommend Denis for any Unity development work. He was a pleasure to work with, and I’m definitely looking forward to collaborating with him again if the need arises. It was a very positive experience, and I would happily work with him again.`
+  },
+  {
+    title: "Unity AR Developer with expertise in the field of AR and VR",
+    stars: 5,
+    text: `Working with Denis was an absolute pleasure. His attention to detail, professionalism, and commitment to delivering high-quality work were evident throughout the project. He consistently exceeded our expectations and demonstrated excellent communication skills. I highly recommend Denis for his exceptional quality of work and dedication to client satisfaction.`
+  },
+  {
+    title: "Unity Senior Engineer for extremely successful life simulator mobile game",
+    stars: 5,
+    text: `It was a pleasure to work with Denis. He supported our organization in creating a prototype in Unity with C# to be able to present our pitch on time at a very important summit. He communicated daily and was able to adhere to all deadlines given as well as the delivery scope. Thank you for your help, Denis.`
+  },
+  {
+    title: "VR game in Unity",
+    stars: 5,
+    text: `Great developer.`
+  },
+  {
+    title: "Looking for Senior Unity game developer.",
+    stars: 5,
+    text: `When our game faced significant issues with Firebase storage, database integration and integrity, Denis Tuslak proved to be a valuable asset.
+
+His knowledge of C# and unity, and his understanding of it.
+
+Love for Firebase was able to tackle these tough chanllegnes and handle them successfully.
+
+Throughout the process, Denis's communication skills were a key to make sure we fully understood out needs and to discuss any issues we were having.
+His ability to communicate complex solutions in an easy-to-understand manner was critical to our tema's strategy and project success.
+
+In addition to solving our Firebase issues, Denis also demonstrated exceptional troubleshooting skills by finding and fixing many bugs in our game.
+His careful approach to debugging and optimizing our code significantly improved the game's performance and user experience.`
+  },
+  {
+    title: "Unity Developer",
+    stars: 5,
+    text: `Good job. Denis is great developer.`
+  },
+  {
+    title: "Unity Developer VR Experience",
+    stars: 5,
+    text: `Good job`
+  },
+  {
+    title: "Animals behavior education - VR Oculus app",
+    stars: 5,
+    text: `Highly recommend Denis as experienced Unity developer with knowledge of VR and especially Oculus Quest 2 dependencies! Project was completed without delays and with good traction of the backlog.`
+  }
+];
+
+let currentIndex = 0;
+
+function updateReview() {
+  const review = reviews[currentIndex];
+  document.getElementById("review-title").innerText = review.title;
+  document.getElementById("review-text").innerText = review.text;
+  document.getElementById("stars").innerText = "★".repeat(Math.floor(review.stars)) + (review.stars % 1 ? "½" : "");
+
+  const box = document.getElementById("review-box");
+  box.style.opacity = 0;
+
+  setTimeout(() => {
+    box.style.opacity = 1;
+  }, 500);
+
+  currentIndex = (currentIndex + 1) % reviews.length;
+}
+
+updateReview();
+setInterval(updateReview, 9000);
+</script>
+
 <div class="clients" style="text-align:center;">
   <h2>Clients</h2>
-  <img src="https://via.placeholder.com/100x50?text=AIA" alt="AIA">
-  <img src="https://via.placeholder.com/100x50?text=Ebay" alt="Ebay">
-  <img src="https://via.placeholder.com/100x50?text=CandyWriter" alt="CandyWriter">
-  <img src="https://via.placeholder.com/100x50?text=Avataris" alt="Avataris">
+  <img src="https://upload.wikimedia.org/wikipedia/en/5/5c/Hong_Kong_Observation_Wheel_Logo_since_2017.png" alt="AIA">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg" alt="Ebay">
+  <img src="https://www.candywriter.com/images/candy.png" alt="CandyWriter">
+   <img src="https://static.wixstatic.com/media/e13307_9c3e551993d146fdba431c122ac4bf85~mv2.png/v1/fill/w_230,h_274,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/AvatarisLogomark_01.png" alt="Avataris">
+  <img src="https://www.nomi-ea.com/wp-content/uploads/2024/12/Nomiea-dizajn-logo-RGB-1.png" alt="Nomiea">
+  <img src=" https://www.cyberdyme.io/wp-content/uploads/2024/03/cyberdymelogowhite.png" alt="CyberDyme">
+ 
+
 </div>
 
 <footer>
@@ -462,28 +547,26 @@
     },
     "retina_detect": true
   });
+  </script>
+  <script>
+function sendEmail() {
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const message = document.getElementById("message").value;
+  const status = document.getElementById("status");
 
-  function sendEmail() {
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
-    const status = document.getElementById('status');
-
-    if (!name || !email || !message) {
-      status.innerText = "Please fill in all fields.";
-      return;
-    }
-
-    const emailRegex = /\S+@\S+\.\S+/;
-    if (!emailRegex.test(email)) {
-      status.innerText = "Invalid email format.";
-      return;
-    }
-
-    // Simulated send
-    status.innerText = "Thanks for reaching out! I'll get back to you soon.";
-    document.getElementById('contact-modal').style.display = 'none';
+  if (!name || !email || !message) {
+    status.innerText = "Please fill out all fields.";
+    return;
   }
+
+  // Placeholder for real email service
+  status.innerText = "Sending...";
+  setTimeout(() => {
+    status.innerText = "Thank you! Message sent.";
+    document.getElementById("contact-modal").style.display = "none";
+  }, 1000);
+}
 </script>
 
 </body>
