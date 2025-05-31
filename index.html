@@ -1,44 +1,44 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Unity Game Developer | Denis Tuzlak</title>
+  <title>Denis Tuzlak | Unity Game Developer</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #d0fff7;
-      background-color: #000;
+      background: #0f1115;
+      color: #f1f1f1;
       overflow-x: hidden;
     }
     #particles-js {
-      position: absolute;
+      position: fixed;
       width: 100%;
       height: 100%;
-      z-index: -1;
+      z-index: 0;
     }
     nav {
-      width: 100%;
+      background: rgba(0, 0, 0, 0.7);
       text-align: center;
-      background: rgba(0, 0, 0, 0.85);
-      padding: 1rem 0;
+      padding: 1rem;
+      z-index: 10;
+      position: relative;
     }
     nav ul {
       list-style: none;
-      margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
+      margin: 0;
+      display: inline-flex;
       gap: 2rem;
     }
+    nav li {
+      position: relative;
+    }
     nav a {
-      text-decoration: none;
       color: #00ffaa;
-      font-weight: bold;
+      text-decoration: none;
       font-size: 1.1rem;
       padding: 0.5rem 1rem;
       transition: 0.3s;
@@ -53,11 +53,9 @@
       position: absolute;
       top: 100%;
       background: #111;
-      border-radius: 5px;
+      border: 1px solid #00ffaa88;
+      border-radius: 6px;
       padding: 0.5rem;
-    }
-    nav li {
-      position: relative;
     }
     nav li:hover .dropdown,
     .dropdown:hover {
@@ -67,114 +65,271 @@
       display: block;
       margin: 0.3rem 0;
     }
-    .container {
-      margin-top: 15vh;
+    .content {
       text-align: center;
-      z-index: 1;
+      padding: 100px 20px 40px;
       position: relative;
+      z-index: 1;
+    }
+    h1 {
+      font-size: 3rem;
+      color: #00ffaa;
+    }
+    .subtitle {
+      font-size: 1.3rem;
+      color: #ccc;
+    }
+    .description {
+      margin-top: 30px;
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .highlight {
+      color: #00ffaa;
+      font-weight: bold;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 3rem auto;
+      max-width: 1000px;
+      padding: 1rem;
     }
     .skill-card {
-      background: rgba(0, 255, 170, 0.05);
-      border: 1px solid #00ffaa;
-      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #00ffaa44;
       padding: 1rem;
-      margin: 1rem;
-      display: inline-block;
-      width: 300px;
-      transition: transform 0.3s ease;
+      border-radius: 8px;
+      transition: transform 0.3s, background 0.3s;
+      color: #00ffaa;
     }
     .skill-card:hover {
       transform: scale(1.05);
-      background: rgba(0, 255, 170, 0.2);
+      background: rgba(0, 255, 170, 0.1);
     }
-    .skills-wrapper {
-      display: flex;
-      flex-wrap: wrap;
+    #get-in-touch-btn {
+      position: fixed;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      background: #00ffaa;
+      color: #000;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 10;
+    }
+    #contact-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8);
       justify-content: center;
+      align-items: center;
+      z-index: 20;
+    }
+    .modal-content {
+      background: #111;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 300px;
+      color: #fff;
+    }
+    .modal-content input, .modal-content textarea {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 5px;
+    }
+    .btn-small {
+      background: #00ffaa;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-right: 0.5rem;
+    }
+    .gallery, .reviews {
+      max-width: 1000px;
       margin: 2rem auto;
-      max-width: 1200px;
+      padding: 1rem;
+    }
+    .review-box {
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+    .stars {
+      color: gold;
+      font-size: 1.2rem;
+    }
+    .badges img, .clients img {
+      height: 50px;
+      margin: 0.5rem;
     }
     footer {
       text-align: center;
-      margin-top: 4rem;
       padding: 2rem;
-      background: #111;
-    }
-    .review-stars {
-      color: gold;
-      font-size: 1.5rem;
-    }
-    .badge {
-      background: #00ffaa;
-      color: #000;
-      padding: 0.3rem 0.7rem;
-      border-radius: 5px;
-      margin: 0.5rem;
-      display: inline-block;
-    }
-    .clients {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
       margin-top: 2rem;
-    }
-    .clients img {
-      height: 40px;
-      opacity: 0.8;
+      color: #888;
     }
   </style>
 </head>
 <body>
-  <div id="particles-js"></div>
 
-  <nav>
-    <ul>
-      <li>
-        <a href="#">Projects</a>
-        <div class="dropdown">
-          <a href="#">VR</a>
-          <a href="#">Mobile</a>
-          <a href="#">WebGL</a>
-          <a href="#">PC</a>
-        </div>
-      </li>
-      <li><a href="#">Unity Tooltips</a></li>
-    </ul>
-  </nav>
+<div id="particles-js"></div>
 
-  <div class="container">
-    <h1 style="color: #00ffaa;">Unity Game Developer</h1>
-    <p>Full-cycle development from idea to store release with over 10 years of expertise.</p>
+<nav>
+  <ul>
+    <li>
+      <a href="#">Projects</a>
+      <div class="dropdown">
+        <a href="#">VR</a>
+        <a href="#">Mobile</a>
+        <a href="#">WebGL</a>
+        <a href="#">PC</a>
+      </div>
+    </li>
+    <li><a href="#">Unity Tooltips</a></li>
+  </ul>
+</nav>
 
-    <div class="skills-wrapper">
-      <div class="skill-card">Multiplayer Solutions (TNet, Mirror, PUN, UNet)</div>
-      <div class="skill-card">Own Game Server Deployment</div>
-      <div class="skill-card">Blockchain & Smart Contracts</div>
-      <div class="skill-card">Database Integrations</div>
-      <div class="skill-card">RESTful APIs & Payment Systems</div>
-      <div class="skill-card">Ads Integrations (Unity Ads, AdMob)</div>
-      <div class="skill-card">Mobile, PC, WebGL, and VR Game Development</div>
-      <div class="skill-card">Bug Fixing & Build Support</div>
-      <div class="skill-card">UI/UX Design & 3D Modeling</div>
-    </div>
-
-    <div class="clients">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Upwork_Logo.svg" alt="Upwork" />
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Unity_Technologies_logo.svg" alt="Unity" />
-    </div>
-
-    <div class="badge">Top Rated Plus</div>
-    <div class="badge">$100K+ Earned</div>
-    <div class="review-stars">★★★★★</div>
+<div class="content">
+  <h1>Denis Tuzlak</h1>
+  <div class="subtitle">Senior Unity Game Developer</div>
+  <div class="description">
+    With over <span class="highlight">10 years of experience</span> building interactive experiences on <span class="highlight">mobile</span>, <span class="highlight">VR</span>, <span class="highlight">PC</span>, and <span class="highlight">WebGL</span>. From <span class="highlight">blockchain games</span> to <span class="highlight">multiplayer architecture</span> and <span class="highlight">full-stack systems</span>.
   </div>
 
-  <footer>
-    <p>© 2025 Denis Tuzlak</p>
-  </footer>
+<div class="skills-grid">
+  <div class="skill-card" style="grid-column: span 4;">Unity</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-  <script>
-    particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
-  </script>
+  <div class="skill-card">Game development</div>
+  <div class="skill-card">Game server development</div>
+  <div class="skill-card">Game optimisation</div>
+  <div class="skill-card">Game deploymnet</div>
+
+  <div class="skill-card">VR / MR / AR</div>
+  <div class="skill-card">Mobile</div>
+  <div class="skill-card">PC / Console</div>
+  <div class="skill-card">WEBGL</div>
+
+  <div class="skill-card">Database Firebase / SQL</div>
+  <div class="skill-card">Login / Register Systems</div>
+  <div class="skill-card">Ad / Payment Integration</div>
+  <div class="skill-card">Game server solutions/ PUN, MIRROR, TNet, UNet</div>
+
+  <div class="skill-card">Debugging / Polishing / Optimisation</div>
+  <div class="skill-card">3D Modeling / UX UI Design</div>
+  <div class="skill-card">Blochain & Smart contracts</div>
+  <div class="skill-card">AI Integration</div>
+</div>
+
+<button id="get-in-touch-btn" onclick="document.getElementById('contact-modal').style.display='flex'">Get in Touch</button>
+
+<div id="contact-modal">
+  <div class="modal-content">
+    <h3>Contact Me</h3>
+    <input type="text" id="name" placeholder="Your Name or Company" />
+    <input type="email" id="email" placeholder="Your Email" />
+    <textarea id="message" placeholder="Your Message"></textarea>
+    <div>
+      <button class="btn-small" onclick="sendEmail()">Send</button>
+      <button class="btn-small" onclick="document.getElementById('contact-modal').style.display='none'">Cancel</button>
+    </div>
+    <div id="status" style="margin-top:10px;"></div>
+  </div>
+</div>
+
+<div class="gallery">
+  <h2 style="text-align:center;">Project highlights</h2>
+  <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
+    <img src="https://via.placeholder.com/150" />
+    <img src="https://via.placeholder.com/150" />
+    <img src="https://via.placeholder.com/150" />
+  </div>
+</div>
+
+<div class="reviews">
+  <h2>Client Reviews</h2>
+  <div class="review-box">
+    <div class="stars">★★★★★</div>
+    <p>100K+ earnings on Upwork, Top Rated Plus</p>
+    <div class="badges">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Upwork_logo.svg" alt="Upwork">
+      <img src="https://img.icons8.com/color/96/000000/steam.png" alt="Steam">
+      <img src="https://img.icons8.com/color/96/000000/android-os.png" alt="Android">
+      <img src="https://img.icons8.com/ios-filled/100/apple-logo.png" alt="Apple">
+    </div>
+  </div>
+</div>
+
+<div class="clients" style="text-align:center;">
+  <h2>Clients</h2>
+  <img src="https://via.placeholder.com/100x50?text=AIA" alt="AIA">
+  <img src="https://via.placeholder.com/100x50?text=Ebay" alt="Ebay">
+  <img src="https://via.placeholder.com/100x50?text=CandyWriter" alt="CandyWriter">
+  <img src="https://via.placeholder.com/100x50?text=Avataris" alt="Avataris">
+</div>
+
+<footer>
+  &copy; 2025 Denis Tuzlak – Let's build your next game.
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+  particlesJS("particles-js", {
+    "particles": {
+      "number": {"value":80,"density":{"enable":true,"value_area":800}},
+      "color": {"value":"#00ffaa"},
+      "shape": {"type":"edge"},
+      "opacity": {"value":0.3,"random":true},
+      "size": {"value":2,"random":true},
+      "line_linked": {
+        "enable": true,
+        "distance": 150,
+        "color": "#00ffaa",
+        "opacity": 0.2,
+        "width": 1
+      },
+      "move": {"enable":true,"speed":1}
+    },
+    "interactivity": {
+      "events": {"onhover": {"enable":true,"mode":"grab"}},
+      "modes": {"grab": {"distance":140,"line_linked": {"opacity":0.5}}}
+    },
+    "retina_detect": true
+  });
+
+  function sendEmail() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const status = document.getElementById('status');
+
+    if (!name || !email || !message) {
+      status.innerText = "Please fill in all fields.";
+      return;
+    }
+
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(email)) {
+      status.innerText = "Invalid email format.";
+      return;
+    }
+
+    // Simulated send
+    status.innerText = "Thanks for reaching out! I'll get back to you soon.";
+    document.getElementById('contact-modal').style.display = 'none';
+  }
+</script>
+
 </body>
 </html>
