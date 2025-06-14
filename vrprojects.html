@@ -15,36 +15,155 @@
 
     h1 {
       text-align: center;
+      color: #00ffaa;
       margin-bottom: 40px;
-    }
-
-    .project {
-      background: #1a1a1a;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-left: 4px solid #00ffe7;
-      border-radius: 5px;
-    }
-
-    .project h2 {
-      margin-top: 0;
-      color: #00ffe7;
     }
 
     .back-button {
       display: inline-block;
-      margin-bottom: 20px;
+      margin: 20px;
       padding: 10px 20px;
-      background-color: #00ffe7;
+      background-color: #00ffaa;
       color: #000;
       text-decoration: none;
       font-weight: bold;
       border-radius: 4px;
+      transition: 0.3s;
     }
 
     .back-button:hover {
-      background-color: #00cccc;
+      background-color: #00ccaa;
     }
+
+    .project-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .project {
+      width: 30%;
+      background: #111;
+      border: 2px solid #00ffaa;
+      box-shadow: 0 0 15px #00ffaa55;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 480px;
+    }
+
+    .project:hover {
+      transform: scale(1.03);
+    }
+
+    .project img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .project h2 {
+      margin: 10px 15px 0;
+      font-size: 1.2rem;
+      color: #00ffaa;
+    }
+
+    .project p {
+      margin: 10px 15px 0;
+      font-size: 0.95rem;
+      flex-grow: 1;
+    }
+
+    .details-button {
+      display: block;
+      text-align: center;
+      margin: 15px;
+      padding: 8px 16px;
+      background-color: #00ffaa;
+      color: #000;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .details-button:hover {
+      background-color: #00ccaa;
+    }
+
+    @media screen and (max-width: 1000px) {
+      .project {
+        width: 100%;
+      }
+    }
+
+    .modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  padding-top: 60px;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  overflow: auto;
+}
+
+.modal-content {
+  background-color: #111;
+  margin: auto;
+  padding: 20px;
+  border: 2px solid #00ffaa;
+  width: 80%;
+  max-width: 900px;
+  box-shadow: 0 0 20px #00ffaa88;
+  border-radius: 10px;
+  position: relative;
+}
+
+
+.media-slider {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.media-container {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  scroll-behavior: smooth;
+}
+
+.media-container img,
+.media-container video {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.nav {
+  background-color: transparent;
+  color: #00ffaa;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-description {
+  margin-top: 20px;
+  color: #ccc;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
   </style>
 </head>
 <body>
@@ -52,19 +171,163 @@
 
   <h1>VR Projects</h1>
 
-  <div class="project">
-    <h2>VR Escape Room</h2>
-    <p>Immersive puzzle-based experience created in Unity using Oculus SDK. Designed for multiplayer interaction and environmental storytelling.</p>
-  </div>
+  <div class="project-container">
+    <div class="project">
+      <img src="Resources/Projects/VR/Atlantis.jpg" alt="Escape the Room" />
+      <h2>Escape the Room - Puzzle Atlantis</h2>
+      <p>VR Meta Quest multiplayer game – Self-hosted server solution with colocation game logic and streaming app for spectators.</p>
+      <a class="details-button" href="#">Details</a>
+    </div>
 
-  <div class="project">
-    <h2>VR Art Gallery</h2>
-    <p>Virtual gallery showcasing digital artwork with teleport-based movement and ambient sound design. Built with WebXR and Unity URP.</p>
-  </div>
+    <div class="project">
+      <img src="Resources/Projects/VR/vaultTrials.png" alt="Vault Trials" />
+      <h2>Vault Trials – Ebay</h2>
+      <p>Let super-fans get up close and personal with rare collections in VR. Includes 3 mini-games, hand tracking, and immersive interaction. Highest scorer wins a card worth up to $500.</p>
+      <a class="details-button" href="#">Details</a>
+    </div>
 
-  <div class="project">
-    <h2>360° VR Tour</h2>
-    <p>Interactive 360-degree experience of a real-world architectural space, with hotspots and narration. Compatible with both desktop and mobile VR.</p>
+    <div class="project">
+      <img src="Resources/Projects/VR/dinosaur_world.png" alt="Dinosaur World" />
+      <h2>Explore Dinosaur World</h2>
+      <p>Multiplayer PUN school game to explore prehistoric environments, created for education through VR immersion.</p>
+     <a class="details-button" href="javascript:void(0)" 
+<a class="details-button" href="javascript:void(0)" 
+   onclick="openModal([
+     'Resources/Projects/VR/DinosaurDetails/trex.png',
+     'Resources/Projects/VR/DinosaurDetails/trex2.png',
+     'Resources/Projects/VR/DinosaurDetails/tric.png',
+     'Resources/Projects/VR/DinosaurDetails/brachio.png',
+     'https://www.youtube.com/embed/nyOaxRgdC2Q'
+   ], 'Dinosaur game description...')">
+   Details
+</a>
+    </div>
+
+    <!-- Mock Projects -->
+    <div class="project">
+      <img src="Resources/Projects/VR/homeTour.png" alt="Virtual Home Tour" />
+      <h2>Virtual Home Tour</h2>
+      <p>VR Home tour in 360, Meta Quest</p>
+      <a class="details-button" href="#">Details</a>
+    </div>
+
+    <div class="project">
+      <img src="Resources/Projects/VR/pacmanVR.jpg" alt="VR Pacman" />
+      <h2>VR Pacman</h2>
+      <p>Pacman 3D made in VR for Meta Quest devices.</p>
+      <a class="details-button" href="#">Details</a>
+    </div>
+
+    <div class="project">
+      <img src="Resources/Projects/VR/e_commerce.webp" alt="E commerce VR" />
+      <h2>Visa E commerce</h2>
+      <p>Dive deep into new experience of shopping in Virtual reality.</p>
+      <a class="details-button" href="#">Details</a>
+    </div>
+
+     <div class="project">
+      <img src="Resources/Projects/VR/discoverPuertoRicco.png" alt="Discover puerto rico" />
+      <h2>Discover puerto rico VR PICO</h2>
+      <p>Immersive VR PICO experience tour "Discover puerto ricco"</p>
+      <a class="details-button" href="#">Details</a>
+    </div>
+
+    <div class="project">
+      <img src="Resources/Projects/VR/zombie_slaughter.jpg" alt="VR Zombie Slaughter" />
+      <h2>VR Zombie Slaughter</h2>
+      <p>VR Zombie Slaughter shooting game.</p>
+      <a class="details-button" href="#">Details</a>
+    </div>
+
+    <div class="project">
+      <img src="Resources/Projects/VR/TreasureHunt.png" alt="Treasure Hunt" />
+      <h2>Treasure Hunt Meta Quest VR</h2>
+      <p>Meta Quest VR speed runer game. </p>
+      <a class="details-button" href="#">Details</a>
+    </div>
+
+
+     <div class="project">
+      <img src="Resources/Projects/VR/pharmacy.jpg" alt="Pharmacy VR" />
+      <h2>Pharmacy VR </h2>
+      <p>Pharmacy VR learning game. Meta Quest"</p>
+      <a class="details-button" href="#">Details</a>
+    </div>
+
+    <div class="project">
+      <img src="Resources/Projects/VR/EscapeTheAlcatraz.png" alt="Escape the Alcatraz" />
+      <h2>Escape the Alcatraz VR Meta Quest</h2>
+      <p>Mutliplayer VR puzzle game.</p>
+      <a class="details-button" href="#">Details</a>
+    </div>
+
+
+    <!-- Modal for project details -->
+<div id="projectModal" class="modal">
+  <div class="modal-content">
+ 
+    <div class="media-slider">
+      <button class="nav prev">&#10094;</button>
+      <div class="media-container" id="mediaContainer">
+        <!-- Dynamic media goes here -->
+      </div>
+      <button class="nav next">&#10095;</button>
+    </div>
+    <div class="modal-description" id="modalDescription">
+      <!-- Dynamic description -->
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById("projectModal");
+  
+  const mediaContainer = document.getElementById("mediaContainer");
+  const modalDescription = document.getElementById("modalDescription");
+
+  let currentSlide = 0;
+
+  function openModal(mediaArray, description) {
+    modal.style.display = "block";
+    mediaContainer.innerHTML = "";
+    modalDescription.innerHTML = description;
+
+    mediaArray.forEach(src => {
+      const isVideo = src.endsWith(".mp4");
+      const element = isVideo
+        ? `<video src="${src}" controls></video>`
+        : `<img src="${src}" />`;
+      mediaContainer.innerHTML += element;
+    });
+
+    currentSlide = 0;
+    updateSlide();
+  }
+
+  function updateSlide() {
+    const width = mediaContainer.clientWidth;
+    mediaContainer.scrollLeft = currentSlide * width;
+  }
+
+  document.querySelector(".next").onclick = () => {
+    if (currentSlide < mediaContainer.children.length - 1) currentSlide++;
+    else currentSlide = 0;
+    updateSlide();
+  };
+
+  document.querySelector(".prev").onclick = () => {
+    if (currentSlide > 0) currentSlide--;
+    else currentSlide = mediaContainer.children.length - 1;
+    updateSlide();
+  };
+
+
+
+  window.onclick = e => {
+    if (e.target === modal) modal.style.display = "none";
+  };
+</script>
+
   </div>
 </body>
 </html>
